@@ -12,14 +12,8 @@ class Rack::Debug
   end
 
   def call(env)
-    Debugger.start_unix_socket_remote if debug?
+    Debugger.start_unix_socket_remote
     app.call(env)
-  end
-
-private ######################################################################
-
-  def debug?
-    return true if RAILS_ENV == 'development'
   end
 
 end
