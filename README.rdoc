@@ -1,0 +1,24 @@
+Usage:
+
+ script/plugin install git://github.com/ddollar/rack-debug.git 
+
+ # config/environments/development.rb
+ config.middleware.use "Rack::Debug"
+
+ # add debugger statements to your code
+ foo = 5
+ bar = 10
+ debugger
+ foo + bar
+
+ # run the rake task
+ rake debug
+ 
+On the next refresh of a page in your app, ruby-debug will break at the
+debugger statements. You can interact with the debugger through the terminal
+where you ran the rake task.
+ 
+Thanks to:
+
+  Rack::Bug for a good example of Rack middleware in Rails
+  Ben Scofield for making me want to build some Rack middleware
