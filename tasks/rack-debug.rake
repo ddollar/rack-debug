@@ -5,5 +5,12 @@
 
 task :debug do
   require File.join(File.dirname(__FILE__), '..', 'ext', 'debugger')
-  Debugger.start_unix_socket_client
+
+  begin
+    Debugger.start_unix_socket_client
+  rescue Errno::ENOENT
+    puts "Server is not running or Passenger has spooled down"
+  rescue StandardError => ex
+    puts "Unable to connect to debugging socket: #{ex}"
+  end
 end
