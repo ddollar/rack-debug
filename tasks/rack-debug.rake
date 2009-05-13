@@ -3,6 +3,7 @@
 #   # Task goes here
 # end
 
+desc 'Launch the Rack::Debug client'
 task :debug do
   require File.join(File.dirname(__FILE__), '..', 'ext', 'debugger')
 
