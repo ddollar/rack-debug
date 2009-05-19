@@ -8,7 +8,6 @@ class Rack::Debug
 
   def initialize(app, options={})
     @app = app
-    instance_eval(&block) if block_given?
   end
 
   def call(env)
