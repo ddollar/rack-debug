@@ -11,6 +11,7 @@ class Rack::Debug
   end
 
   def call(env)
+    LineCache::clear_file_cache
     Debugger.start_unix_socket_remote
     app.call(env)
   end
