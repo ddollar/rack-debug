@@ -13,6 +13,7 @@ Gem
  $ gem install ddollar-rack-debug
 
  # add a use line to your builder
+ require 'rack/debug'
  Rack::Builder.new do
    use Rack::Debug
    run MyApp.new
