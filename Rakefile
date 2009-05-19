@@ -18,7 +18,7 @@ namespace :gem do
       eval(gem_config.read)
     end
 
-    @config.files = FileList["{bin,doc,lib,test}/**/*"].to_a.map do |file|
+    @config.files = FileList["{bin,lib,test}/**/*"].to_a.map do |file|
       '"' + file + '"'
     end.join(',')
   end
