@@ -1,6 +1,11 @@
-Installation:
+Installation (Rails):
 
  script/plugin install git://github.com/ddollar/rack-debug.git
+
+Installation (Gem):
+
+ gem source add http://gems.github.com
+ gem install ddollar-rack-debug
 
 Usage (Rails):
 
@@ -8,7 +13,7 @@ Usage (Rails):
  # config/environments/development.rb
  config.middleware.use "Rack::Debug"
 
-Usage (Rack::Builder):
+Usage (Gem):
 
  # add a use line to your builder
  Rack::Builder.new do
