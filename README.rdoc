@@ -2,12 +2,22 @@ Installation:
 
  script/plugin install git://github.com/ddollar/rack-debug.git
 
-Usage:
+Usage (Rails):
 
+ # Rails
  # config/environments/development.rb
  config.middleware.use "Rack::Debug"
 
- # add debugger statements to your code
+Usage (Rack::Builder):
+
+ # add a use line to your builder
+ Rack::Builder.new do
+   use Rack::Debug
+   run MyApp.new
+ end
+
+Add breakpoints to your code
+
  @user = User.find(params[:id])
  debugger
  render :show
