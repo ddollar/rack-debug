@@ -1,82 +1,49 @@
 require 'rubygems'
-require 'erb'
-require 'yaml'
 require 'rake'
 
 begin
-  require 'hanna/rdoctask'
+  require 'jeweler'
+  Jeweler::Tasks.new do |gem|
+    gem.name = "rack-debug"
+    gem.summary = %Q{Rack::Debug adds a middlerware interface to ruby-debug}
+    gem.description = <<-DESCRIPTION
+
+Rack::Debug adds a middlerware interface to ruby-debug 
+http://github.com/github/rack-debug
+
+DESCRIPTION
+    gem.email = "<ddollar@gmail.com>"
+    gem.homepage = "http://github.com/ddollar/rack-debug"
+    gem.authors = ["David Dollar"]
+    gem.add_dependency 'rake', '>= 1.0'
+    gem.add_dependency 'rake', '>= 1.0'
+  end
+  Jeweler::GemcutterTasks.new
 rescue LoadError
-  require 'rake/rdoctask'
+  puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
 end
 
-namespace :gem do
-
-  task :config do
-    @config = OpenStruct.new
-
-    File.open("config/gem.rb", "r") do |gem_config|
-      eval(gem_config.read)
-    end
-
-    @config.files = FileList["{bin,lib,test}/**/*"].to_a.map do |file|
-      '"' + file + '"'
-    end.join(',')
-  end
-
-  desc "Build the gem"
-  task :build => [ 'gem:config', 'gem:spec:build' ] do
-    spec = nil
-    File.open("#{@config.name}.gemspec", 'r') do |gemspec|
-      eval gemspec.read
-    end
-    gemfile = Gem::Builder.new(spec).build
-    Dir.mkdir('pkg') unless File.exists?('pkg')
-    File.rename(gemfile, "pkg/#{gemfile}")
-  end
-
-  namespace :spec do
-
-    desc "Build gemspec"
-    task :build => [ :config ] do
-      File.open("config/gemspec.rb.erb", "r") do |template|
-        File.open("#{@config.name}.gemspec", "w") do |gemspec|
-          template_data =  "<% config = YAML::load(%{#{Regexp.escape(YAML::dump(@config))}}) %>\n"
-          template_data += template.read
-          original_stdout = $stdout
-          $stdout = gemspec
-          ERB.new(template_data).run
-          $stdout = original_stdout
-        end
-      end
-    end
-
-    desc "Test gemspec against Github"
-    task :test => [ 'gem:config', :build ] do
-      require 'rubygems/specification'
-      data = File.read("#{@config.name}.gemspec")
-      spec = nil
-      Thread.new { spec = eval("$SAFE = 3\n#{data}") }.join
-      puts spec
-    end
-
-  end
+require 'spec/rake/spectask'
+Spec::Rake::SpecTask.new(:spec) do |spec|
+  spec.libs << 'lib' << 'spec'
+  spec.spec_files = FileList['spec/**/*_spec.rb']
 end
 
-namespace :rdoc do
+Spec::Rake::SpecTask.new(:rcov) do |spec|
+  spec.libs << 'lib' << 'spec'
+  spec.pattern = 'spec/**/*_spec.rb'
+  spec.rcov = true
+end
 
-  desc 'Generate RDoc'
-  rd = Rake::RDocTask.new(:build) do |rdoc|
-    Rake::Task['gem:config'].invoke
-    rdoc.title = @config.name
-    rdoc.main  = 'README.rdoc'
-    rdoc.rdoc_dir = 'doc'
-    rdoc.options << '--line-numbers' << '--inline-source'
-    rdoc.rdoc_files.include('README.rdoc', 'lib/**/*.rb')
+task :spec => :check_dependencies
+
+task :default => :spec
+
+begin
+  require 'yard'
+  YARD::Rake::YardocTask.new
+rescue LoadError
+  task :yardoc do
+    abort "YARD is not available. In order to run yardoc, you must: sudo gem install yard"
   end
-
-  desc 'View RDoc'
-  task :view => [ :build ] do
-    system %{open doc/index.html}
-  end
-
 end
