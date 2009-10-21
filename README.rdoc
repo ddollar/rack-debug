@@ -13,9 +13,6 @@ Rails
 
 Middleware
 
- # install
- $ gem install ddollar-rack-debug
-
  # add a use line to your builder
  require 'rack/debug'
  Rack::Builder.new do
