@@ -1,15 +1,19 @@
-Rails Plugin
+Install
 
- # install
- $ script/plugin install git://github.com/ddollar/rack-debug.git
+ $ gem install rack-debug
+
+Rails
 
  # config/environments/development.rb
- config.middleware.use "Rack::Debug"
+ config.gem 'rack-debug'
+ config.middleware.use 'Rack::Debug'
 
-Gem
+ # RAILS_ROOT/Rakefile
+ require 'rack-debug/tasks'
+
+Middleware
 
  # install
- $ gem source add http://gems.github.com
  $ gem install ddollar-rack-debug
 
  # add a use line to your builder
