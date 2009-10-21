@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David Dollar"]
-  s.date = %q{2009-08-31}
+  s.date = %q{2009-10-21}
   s.description = %q{
 Rack::Debug adds a middlerware interface to ruby-debug 
 http://github.com/github/rack-debug
@@ -26,6 +26,8 @@ http://github.com/github/rack-debug
      "VERSION",
      "ext/debugger.rb",
      "init.rb",
+     "lib/rack-debug.rb",
+     "lib/rack-debug/tasks.rb",
      "lib/rack/debug.rb",
      "rack-debug.gemspec",
      "tasks/rack-debug.rake"
