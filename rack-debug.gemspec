@@ -24,8 +24,6 @@ http://github.com/github/rack-debug
      "README.rdoc",
      "Rakefile",
      "VERSION",
-     "init.rb",
-     "lib/rack-debug.rb",
      "lib/rack-debug/debugger.rb",
      "lib/rack-debug/tasks.rb",
      "lib/rack/debug.rb",
