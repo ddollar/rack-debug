@@ -4,7 +4,7 @@ require 'thread'
 require 'fileutils'
 
 module Debugger
-  SOCKET_PATH = File.join(Rails.root, 'tmp', 'sockets', 'debugger')
+  SOCKET_PATH = File.join(Dir.getwd, 'tmp', 'sockets', 'debugger')
 
   class << self
     def start_unix_socket_remote(socket_path=SOCKET_PATH, post_mortem = false)

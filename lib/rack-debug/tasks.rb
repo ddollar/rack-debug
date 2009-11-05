@@ -8,7 +8,11 @@ task :debug do
   require File.join(File.dirname(__FILE__), 'debugger')
 
   begin
-    Debugger.start_unix_socket_client
+    if ENV['socket_path']
+      Debugger.start_unix_socket_client ENV['socket_path']
+    else
+      Debugger.start_unix_socket_client
+    end
   rescue Errno::ENOENT
     puts "Server is not running or Passenger has spooled down"
   rescue StandardError => ex
