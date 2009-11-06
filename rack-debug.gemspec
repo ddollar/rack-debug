@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rack-debug}
-  s.version = "1.3.2"
+  s.version = "1.4.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David Dollar", "Bart Teeuwisse"]
-  s.date = %q{2009-10-21}
+  s.date = %q{2009-11-05}
   s.description = %q{
 Rack::Debug adds a middlerware interface to ruby-debug
 http://github.com/github/rack-debug
@@ -24,17 +24,17 @@ http://github.com/github/rack-debug
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "lib/rack-debug.rb",
      "lib/rack-debug/debugger.rb",
      "lib/rack-debug/tasks.rb",
      "lib/rack/debug.rb",
-     "rack-debug.gemspec",
-     "tasks/rack-debug.rake"
+     "rack-debug.gemspec"
   ]
   s.homepage = %q{http://github.com/ddollar/rack-debug}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
-  s.summary = %q{Rack::Debug adds a middlerware interface to ruby-debug}
+  s.summary = %q{Rack::Debug adds a middleware interface to ruby-debug}
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
