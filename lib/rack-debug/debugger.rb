@@ -4,12 +4,15 @@ require 'thread'
 require 'fileutils'
 
 module Debugger
-  SOCKET_PATH = File.join(Dir.getwd, 'tmp', 'sockets', 'debugger')
+
+  DEFAULT_SOCKET_PATH = File.join(Dir.getwd, 'tmp', 'sockets', 'debugger')
 
   class << self
-    def start_unix_socket_remote(socket_path=SOCKET_PATH, post_mortem = false)
+    def start_unix_socket_remote(socket_path, post_mortem = false)
       return if @thread
       return if started?
+
+      socket_path ||= DEFAULT_SOCKET_PATH
 
       self.interface = nil
       start
@@ -47,9 +50,12 @@ module Debugger
     end
     alias_method :start_unix_socket_server, :start_unix_socket_remote
 
-    def start_unix_socket_control(socket_path=SOCKET_PATH) # :nodoc:
+    def start_unix_socket_control(socket_path) # :nodoc:
       raise "Debugger is not started" unless started?
       return if defined?(@control_thread) && @control_thread
+
+      socket_path ||= DEFAULT_SOCKET_PATH
+
       File.unlink(socket_path) if File.exists?(socket_path)
       @control_thread = DebugThread.new do
         server = UNIXServer.open(socket_path)
@@ -61,7 +67,9 @@ module Debugger
       end
     end
 
-    def start_unix_socket_client(socket_path=SOCKET_PATH)
+    def start_unix_socket_client(socket_path)
+      socket_path ||= DEFAULT_SOCKET_PATH
+
       require "socket"
       interface = Debugger::LocalInterface.new
       socket = UNIXSocket.new(socket_path + '.server')
