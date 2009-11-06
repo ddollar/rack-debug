@@ -20,6 +20,12 @@ Middleware
    run MyApp.new
  end
 
+ # can optionally specify where to put the sockets
+ use Rack::Debug, :socket_path => '/tmp/rack-debug'
+
+ # Rakefile
+ require 'rack-debug/tasks'
+
 Add breakpoints to your code
 
  @user = User.find(params[:id])
@@ -35,6 +41,9 @@ Debugging:
  # refresh a page in your browser, your app will break at debugger statements
  (rdb:1) p @user
  #<User id: 1, name: "David Dollar", email: "ddollar@gmail.com", created_at: "...", updated_at: "...">
+
+ # can specify the socket path
+ SOCKET_PATH=/tmp/rack-debug rake debug
 
 Thanks to:
 
