@@ -5,16 +5,16 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "rack-debug"
-    gem.summary = %Q{Rack::Debug adds a middlerware interface to ruby-debug}
+    gem.summary = %Q{Rack::Debug adds a middleware interface to ruby-debug}
     gem.description = <<-DESCRIPTION
 
-Rack::Debug adds a middlerware interface to ruby-debug 
+Rack::Debug adds a middlerware interface to ruby-debug
 http://github.com/github/rack-debug
 
 DESCRIPTION
     gem.email = "<ddollar@gmail.com>"
     gem.homepage = "http://github.com/ddollar/rack-debug"
-    gem.authors = ["David Dollar"]
+    gem.authors = ["David Dollar", "Bart Teeuwisse"]
 
     gem.add_dependency 'rack',       '>= 1.0'
     gem.add_dependency 'ruby-debug', '>= 0.10'
