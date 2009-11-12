@@ -1,11 +1,11 @@
 Install
 
- $ gem install rack-debug
+ $ gem install rack-debug --source http://gemcutter.org
 
 Rails
 
  # config/environments/development.rb
- config.gem 'rack-debug'
+ config.gem 'rack-debug', :source => 'http://gemcutter.org'
  config.middleware.use 'Rack::Debug'
 
  # RAILS_ROOT/Rakefile
