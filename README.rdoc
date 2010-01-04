@@ -45,6 +45,13 @@ Debugging:
  # can specify the socket path
  SOCKET_PATH=/tmp/rack-debug rake debug
 
+Meta:
+
+  Author/Maintainer: David Dollar
+
+  Patches contributed by:
+    Bart Teeuwisse
+
 Thanks to:
 
   Rack::Bug for a good example of Rack middleware in Rails

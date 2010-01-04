@@ -14,7 +14,7 @@ http://github.com/github/rack-debug
 DESCRIPTION
     gem.email = "<ddollar@gmail.com>"
     gem.homepage = "http://github.com/ddollar/rack-debug"
-    gem.authors = ["David Dollar", "Bart Teeuwisse"]
+    gem.authors = ["David Dollar"]
 
     gem.add_dependency 'rack',       '>= 1.0'
     gem.add_dependency 'ruby-debug', '>= 0.10'
