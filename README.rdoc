@@ -47,10 +47,10 @@ Debugging:
 
 Meta:
 
-  Author/Maintainer: David Dollar
+ Author/Maintainer: David Dollar
 
-  Patches contributed by:
-    Bart Teeuwisse
+ Patches contributed by:
+   Bart Teeuwisse
 
 Thanks to:
 
