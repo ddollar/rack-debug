@@ -42,7 +42,11 @@ http://github.com/github/rack-debug
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<rack>, [">= 1.0"])
-      s.add_runtime_dependency(%q<ruby-debug>, [">= 0.10"])
+      if RUBY_VERSION >= "1.9.2"
+        s.add_runtime_dependency(%q<ruby-debug19>, [">= 0.11.6"])
+      else
+        s.add_runtime_dependency(%q<ruby-debug>, [">= 0.10"])
+      end
     else
       s.add_dependency(%q<rack>, [">= 1.0"])
       s.add_dependency(%q<ruby-debug>, [">= 0.10"])

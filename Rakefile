@@ -17,7 +17,11 @@ DESCRIPTION
     gem.authors = ["David Dollar"]
 
     gem.add_dependency 'rack',       '>= 1.0'
-    gem.add_dependency 'ruby-debug', '>= 0.10'
+    if RUBY_VERSION >= "1.9.2"
+      gem.add_dependency 'ruby-debug19', '>= 0.11.6'
+    else  
+      gem.add_dependency 'ruby-debug', '>= 0.10'
+    end
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
