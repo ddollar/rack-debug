@@ -1,11 +1,25 @@
-Install
+Why this fork?
+
+ This fork supports using Rack::Debug with Ruby 1.9.2 and Rails 3.
+ The change is to use ruby-debug19 when appropriate.
+ Pull request will be issued to main repo.
+
+Install (Rails 2)
 
  $ gem install rack-debug
+
+Install (Rails 3 on Ruby 1.9.2)
+
+ # RAILS_ROOT/Gemfile
+ group :development do
+   gem "ruby-debug19"
+   gem "rack-debug", :git => 'git://github.com/rjacoby/rack-debug.git'
+ end
 
 Rails
 
  # config/environments/development.rb
- config.gem 'rack-debug'
+ config.gem 'rack-debug' # NOTE: Rails 2 only! Bundler handles this in Rails 3
  config.middleware.use 'Rack::Debug'
 
  # RAILS_ROOT/Rakefile
@@ -48,6 +62,8 @@ Debugging:
 Meta:
 
  Author/Maintainer: David Dollar
+
+ Ruby 1.9.2/Rails3 fixes: Rafi Jacoby
 
  Patches contributed by:
    Bart Teeuwisse
