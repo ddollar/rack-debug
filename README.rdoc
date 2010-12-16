@@ -1,3 +1,5 @@
+NOTE: If you're using Ruby 1.8.x please use the 1.x series of rack-debug
+
 Install
 
  $ gem install rack-debug
